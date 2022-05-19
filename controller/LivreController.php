@@ -32,7 +32,7 @@ class LivreController
     public function supprimerLivre($id)
     {
         $img = $this->livreManager->getBookById($id)->getImg();
-        unset($img);
+        unlink("public/images/".$img);
         $this->livreManager->supprimerLivreBD($id);
         header("location: ".URL."livres");
     }

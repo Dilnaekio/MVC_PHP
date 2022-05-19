@@ -11,8 +11,15 @@ class LivreController
         $this->livreManager->loadBooks();
     }
 
-    public function afficherLivres(){
+    public function afficherLivres()
+    {
         $books = $this->livreManager->getBooksList();
         require "view/livresView.php";
+    }
+
+    public function afficherLivre($id)
+    {
+        $book = $this->livreManager->getBookById($id);
+        require "view/oneBookView.php";
     }
 }

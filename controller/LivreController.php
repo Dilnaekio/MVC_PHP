@@ -1,5 +1,6 @@
 <?php
 require "model/BookManager.php";
+require "GlobalController.php";
 
 class LivreController
 {
@@ -26,5 +27,14 @@ class LivreController
     public function ajoutLivre()
     {
         require "view/ajoutLivre.php";
+    }
+
+    public function ajoutLivreValidation()
+    {
+        $img = $_FILES['addBookImg'];
+        $folder = "public/images/";
+        $newImg = GlobalController::ajoutImage($_POST["addBookName"], $img, $folder);
+        $this->livreManager->ajoutLivreBD($_POST["addBookName"], $_POST["addBookPages"], $newImg);
+        header("location: ".URL."livres");
     }
 }

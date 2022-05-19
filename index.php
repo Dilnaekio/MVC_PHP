@@ -32,6 +32,9 @@ try {
                         case "supprimer":
                             echo "Page supprimer";
                             break;
+                        case "valider":
+                            $controller->ajoutLivreValidation();
+                            break;
                         default:
                             throw new Exception("Aucune sous page trouvée");
                     }

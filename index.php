@@ -30,7 +30,7 @@ try {
                             echo "Page modifier";
                             break;
                         case "supprimer":
-                            echo "Page supprimer";
+                            $controller->supprimerLivre($url[2]);
                             break;
                         case "valider":
                             $controller->ajoutLivreValidation();

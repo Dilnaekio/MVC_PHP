@@ -29,6 +29,14 @@ class LivreController
         require "view/ajoutLivre.php";
     }
 
+    public function supprimerLivre($id)
+    {
+        $img = $this->livreManager->getBookById($id)->getImg();
+        unset($img);
+        $this->livreManager->supprimerLivreBD($id);
+        header("location: ".URL."livres");
+    }
+
     public function ajoutLivreValidation()
     {
         $img = $_FILES['addBookImg'];

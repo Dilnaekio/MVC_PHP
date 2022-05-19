@@ -1,4 +1,4 @@
-<?php 
+<?php
 ob_start();
 
 ?>
@@ -10,9 +10,9 @@ ob_start();
         <th>Nombre de pages</th>
         <th colspan="2">Actions</th>
     </tr>
-    
+
     <?php
-    foreach($books as $book) {
+    foreach ($books as $book) {
     ?>
         <tr>
             <td class="align-middle"><img src="<?= URL ?>public/images/<?= $book->getImg(); ?>" alt="" width="60px;"></td>
@@ -21,7 +21,11 @@ ob_start();
 
             <td class="align-middle"><?= $book->getNbPages(); ?></td>
             <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
-            <td class="align-middle"><a href="" class="btn btn-danger">Supprimer</a></td>
+            <td class="align-middle">
+                <form action="<?= URL ?>livres/supprimer/<?= $book->getId(); ?>" method="post" onsubmit="confirm('Voulez-vous vraiment supprimer ce livre ?')">
+                    <input type="submit" value="Supprimer" class="btn btn-danger">
+                </form>
+            </td>
         </tr>
     <?php } ?>
 </table>

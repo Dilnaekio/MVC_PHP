@@ -43,17 +43,25 @@ class BookManager extends Model
         }
     }
 
-    public function ajoutLivreBD($title, $nbPages, $img){
-        var_dump($title);
-        var_dump($nbPages);
-        var_dump($img);
+    public function ajoutLivreBD($title, $nbPages, $img)
+    {
         $db = $this->getBdd();
         $sql = "INSERT INTO books (title_book, nb_pages_book, img_book) VALUES (:title, :pages, :img)";
         $req = $db->prepare($sql);
         $req->execute([
             ":title" => $title,
             ":pages" => $nbPages,
-            ":img" => $img        
+            ":img" => $img
+        ]);
+    }
+
+    public function supprimerLivreBD($id)
+    {
+        $db = $this->getBdd();
+        $sql = "DELETE from books where id_book = :id";
+        $req = $db->prepare($sql);
+        $req->execute([
+            ":id" => $id
         ]);
     }
 }

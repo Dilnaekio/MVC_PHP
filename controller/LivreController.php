@@ -1,4 +1,5 @@
 <?php
+require "model/BookManager.php";
 
 class LivreController
 {

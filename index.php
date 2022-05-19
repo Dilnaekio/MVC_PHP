@@ -1,4 +1,6 @@
 <?php
+require "controller/LivreController.php";
+$controller = new LivreController;
 
 if (empty($_GET['page'])) {
     require "view/accueilView.php";
@@ -9,7 +11,7 @@ if (empty($_GET['page'])) {
             break;
 
         case "livres":
-            require "view/livresView.php";
+            $controller->afficherLivres();
             break;
     }
 }

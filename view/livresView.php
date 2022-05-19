@@ -1,10 +1,6 @@
 <?php 
-require "model/BookManager.php";
 ob_start();
 
-$manager = new BookManager;
-$manager->loadBooks();
-$books = $manager->getBooksList();
 ?>
 
 <table class="table text-center">

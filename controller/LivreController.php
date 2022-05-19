@@ -22,4 +22,9 @@ class LivreController
         $book = $this->livreManager->getBookById($id);
         require "view/oneBookView.php";
     }
+
+    public function ajoutLivre()
+    {
+        require "view/ajoutLivre.php";
+    }
 }

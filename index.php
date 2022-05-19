@@ -21,11 +21,10 @@ try {
                 } else {
                     switch ($url[1]) {
                         case "lire":
-                            // TODO : il faut que je lui donne l'ID du livre choisi
                             $controller->afficherLivre($url[2]);
                             break;
                         case "ajouter":
-                            echo "Page ajouter";
+                            $controller->ajoutLivre();
                             break;
                         case "modifier":
                             echo "Page modifier";

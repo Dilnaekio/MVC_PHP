@@ -6,8 +6,7 @@ $title = $book->getTitle();
 <main class="container">
     <section class="card">
         <figure>
-            <!-- TODO : faire le lien img avec URL -->
-            <img src="<?= URL.$book->getImg(); ?>" alt="<?= $book->getTitle(); ?>">
+            <img src="<?= URL . $book->getImg(); ?>" alt="<?= $book->getTitle(); ?>">
         </figure>
 
         <article class="card-body">

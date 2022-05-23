@@ -6,7 +6,7 @@ abstract class GlobalController
     {
         if ($file['size'] > 0) {
             $upload = 1;
-            
+
             //On vérifie si le dossier images/ existe, si non, on le créé
             if (!file_exists($folder)) {
                 mkdir($folder, 0777);
@@ -45,11 +45,19 @@ abstract class GlobalController
             //On déplace le fichier uploadé dans notre dossier /images en lui donnant le nom de l'utilisateur
             move_uploaded_file($file['tmp_name'], $target_file);
 
-            if($upload === 1){
+            if ($upload === 1) {
                 // Cela renvoie le nom du fichier complet
-                
-                return $random."_".$title.".".$extension;
+
+                return $random . "_" . $title . "." . $extension;
             }
         }
+    }
+
+    public static function manageErrors($type, $message)
+    {
+        $_SESSION["alert"] = [
+            'type' => $type,
+            'message' => $message
+        ];
     }
 }

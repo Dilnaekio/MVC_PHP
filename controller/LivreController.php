@@ -34,6 +34,8 @@ class LivreController
         $img = $this->livreManager->getBookById($id)->getImg();
         unlink("public/images/" . $img);
         $this->livreManager->supprimerLivreBD($id);
+
+        GlobalController::manageErrors("success", "Votre livre a bien été supprimé");
         header("location: " . URL . "livres");
     }
 
@@ -43,6 +45,7 @@ class LivreController
         $folder = "public/images/";
         $newImg = GlobalController::ajoutImage($_POST["addBookName"], $img, $folder);
         $this->livreManager->ajoutLivreBD($_POST["addBookName"], $_POST["addBookPages"], $newImg);
+        GlobalController::manageErrors("success", "Votre livre a bien été ajouté");
         header("location: " . URL . "livres");
     }
 
@@ -56,10 +59,7 @@ class LivreController
     {
         $folder = "public/images/";
         $currentImg = $_POST["currentImg"];
-        var_dump($currentImg);
-
         $newImg = $_FILES["modBookImg"];
-        var_dump($newImg);
 
         if ($newImg["size"] > 0) {
             unlink($currentImg);
@@ -71,6 +71,7 @@ class LivreController
             $this->livreManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
         }
 
+        GlobalController::manageErrors("success", "Les modifications ont bien été enregistrées");
         header("location: " . URL . "livres");
     }
 }

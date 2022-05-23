@@ -47,6 +47,7 @@ abstract class GlobalController
 
             if($upload === 1){
                 // Cela renvoie le nom du fichier complet
+                
                 return $random."_".$title.".".$extension;
             }
         }

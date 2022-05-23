@@ -27,7 +27,10 @@ try {
                             $controller->ajoutLivre();
                             break;
                         case "modifier":
-                            echo "Page modifier";
+                            $controller->modifierLivre($url[2]);
+                            break;
+                        case "modifValider":
+                            $controller->modifLivreValidation();
                             break;
                         case "supprimer":
                             $controller->supprimerLivre($url[2]);
@@ -41,9 +44,9 @@ try {
                     break;
                 }
             default:
-                throw new Exception("Aucune page principale trouvée");
+                throw new Exception("Aucune page principale trouvée ". URL);
         }
     }
 } catch (Exception $e) {
-    echo "Erreur:" . $e->getMessage();
+    echo "Erreur: " . $e->getMessage();
 }

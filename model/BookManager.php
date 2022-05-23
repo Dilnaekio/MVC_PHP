@@ -21,9 +21,8 @@ class BookManager extends Model
 
     public function loadBooks()
     {
-        $db = $this->getBdd();
         $sql = "SELECT * FROM books";
-        $req = $db->prepare($sql);
+        $req = $this->getBdd()->prepare($sql);
         $req->execute([]);
 
         $data = $req->fetchAll(PDO::FETCH_OBJ);
@@ -45,9 +44,8 @@ class BookManager extends Model
 
     public function ajoutLivreBD($title, $nbPages, $img)
     {
-        $db = $this->getBdd();
         $sql = "INSERT INTO books (title_book, nb_pages_book, img_book) VALUES (:title, :pages, :img)";
-        $req = $db->prepare($sql);
+        $req = $this->getBdd()->prepare($sql);
         $req->execute([
             ":title" => $title,
             ":pages" => $nbPages,
@@ -57,10 +55,21 @@ class BookManager extends Model
 
     public function supprimerLivreBD($id)
     {
-        $db = $this->getBdd();
         $sql = "DELETE from books where id_book = :id";
-        $req = $db->prepare($sql);
+        $req = $this->getBdd()->prepare($sql);
         $req->execute([
+            ":id" => $id
+        ]);
+    }
+
+    public function modifierLivreBD($id, $titre, $nbPages, $image)
+    {
+        $sql = "UPDATE books SET title_book = ':titre', nb_pages_books = ':pages', img_book = ':img' WHERE id_book = :id";
+        $req = $this->getBdd()->prepare($sql);
+        $req->execute([
+            ":titre" => $titre,
+            ":pages" => $nbPages,
+            ":img" => $image,
             ":id" => $id
         ]);
     }

@@ -20,7 +20,7 @@ ob_start();
             <td class="align-middle"><a href="<?= URL ?>livres/lire/<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a></td>
 
             <td class="align-middle"><?= $book->getNbPages(); ?></td>
-            <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
+            <td class="align-middle"><a href="<?= URL ?>livres/modifier/<?= $book->getId(); ?>" class="btn btn-warning">Modifier</a></td>
             <td class="align-middle">
                 <form action="<?= URL ?>livres/supprimer/<?= $book->getId(); ?>" method="post" onsubmit="confirm('Voulez-vous vraiment supprimer ce livre ?')">
                     <input type="submit" value="Supprimer" class="btn btn-danger">

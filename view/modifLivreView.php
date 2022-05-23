@@ -16,7 +16,7 @@ ob_start();
                 <img src="<?= URL ?>public/images/<?= $book->getImg(); ?>" alt="<?= $book->getTitle() ?>">
                 <figcaption><?= $book->getTitle() ?></figcaption>
             </figure>
-            <input type="hidden" name="currentImg" value="<?= URL ?>public/images/<?= $book->getImg(); ?>">
+            <input type="hidden" name="currentImg" value="<?= $book->getImg(); ?>">
             <label for="modBookImg">Couverture :</label>
             <input type="file" name="modBookImg" id="modBookImg">
 

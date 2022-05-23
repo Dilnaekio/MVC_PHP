@@ -61,9 +61,9 @@ class LivreController
         $newImg = $_FILES["modBookImg"];
         var_dump($newImg);
 
-        if (!empty($newImg)) {
-            unlink($folder . $currentImg);
-            $imgToAdd = GlobalController::ajoutImage($_POST["addBookName"], $newImg, $folder);
+        if ($newImg["size"] > 0) {
+            unlink($currentImg);
+            $imgToAdd = GlobalController::ajoutImage($_POST["modBookName"], $newImg, $folder);
 
             $this->livreManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
         } else {
@@ -71,6 +71,6 @@ class LivreController
             $this->livreManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
         }
 
-        // header("location: " . URL . "livres");
+        header("location: " . URL . "livres");
     }
 }

@@ -64,7 +64,7 @@ class BookManager extends Model
 
     public function modifierLivreBD($id, $titre, $nbPages, $image)
     {
-        $sql = "UPDATE books SET title_book = ':titre', nb_pages_books = ':pages', img_book = ':img' WHERE id_book = :id";
+        $sql = "UPDATE books SET title_book = :titre, nb_pages_book = :pages, img_book = :img WHERE id_book = :id";
         $req = $this->getBdd()->prepare($sql);
         $req->execute([
             ":titre" => $titre,

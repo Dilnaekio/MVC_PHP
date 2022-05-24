@@ -1,5 +1,6 @@
 <?php
 
+// Classe pour définir les propriétés et méthodes d'un livre
 class Books
 {
     private $id;

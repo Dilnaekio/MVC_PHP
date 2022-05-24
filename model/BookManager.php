@@ -1,24 +1,26 @@
 <?php
 require "ModelClass.php";
-require "LivreClass.php";
+require "BookClass.php";
 
+// Classe qui va gérer toutes les données liées aux livres
 class BookManager extends Model
 {
     private $booksList;
+
+    // Méthode pour ajouter un livre dans l'array dédié
 
     public function addBook($book)
     {
         $this->booksList[] = $book;
     }
 
-    /**
-     * Get the value of booksList
-     */
+    // Méthode pour récupérer la liste de livres
     public function getBooksList()
     {
         return $this->booksList;
     }
 
+    // Méthode pour charger les livres en base de données et les enregistrer dans l'array dédié
     public function loadBooks()
     {
         $sql = "SELECT * FROM books";
@@ -33,6 +35,7 @@ class BookManager extends Model
         }
     }
 
+    // Récupérer un livre dans l'array dédié en fonction de son ID
     public function getBookById($id)
     {
         foreach ($this->booksList as $book) {
@@ -42,7 +45,8 @@ class BookManager extends Model
         }
     }
 
-    public function ajoutLivreBD($title, $nbPages, $img)
+    // Méthode pour ajouter un livre en base de données
+    public function addBookDB($title, $nbPages, $img)
     {
         $sql = "INSERT INTO books (title_book, nb_pages_book, img_book) VALUES (:title, :pages, :img)";
         $req = $this->getBdd()->prepare($sql);
@@ -53,7 +57,8 @@ class BookManager extends Model
         ]);
     }
 
-    public function supprimerLivreBD($id)
+    // Méthode pour supprimer un livre en base de données en fonction de l'ID donnée
+    public function deleteBookDB($id)
     {
         $sql = "DELETE from books where id_book = :id";
         $req = $this->getBdd()->prepare($sql);
@@ -62,14 +67,15 @@ class BookManager extends Model
         ]);
     }
 
-    public function modifierLivreBD($id, $titre, $nbPages, $image)
+    // Méthode pour modifier les informations d'un livre en base de données en fonction de l'ID donnée
+    public function modifyBookDB($id, $title, $nbPages, $img)
     {
-        $sql = "UPDATE books SET title_book = :titre, nb_pages_book = :pages, img_book = :img WHERE id_book = :id";
+        $sql = "UPDATE books SET title_book = :title, nb_pages_book = :pages, img_book = :img WHERE id_book = :id";
         $req = $this->getBdd()->prepare($sql);
         $req->execute([
-            ":titre" => $titre,
+            ":title" => $title,
             ":pages" => $nbPages,
-            ":img" => $image,
+            ":img" => $img,
             ":id" => $id
         ]);
     }

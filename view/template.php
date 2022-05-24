@@ -32,8 +32,9 @@
             <h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-info"><?= $title ?></h1>
         </div>
     </header>
+
+    <!-- Si une action a initialisée une super globale SESSION "alert", celle-ci va afficher le message et modifier sa couleur en fonction du type défini dans ManageErrors (définie dans GlobalController.php, utilisée dans BookController.php) -->
     <?php if (isset($_SESSION["alert"])) { ?>
-        <!-- TODO : définir la couleur avec un test conditionnel -->
         <div class="alert alert-<?= $_SESSION["alert"]["type"] ?>" role="alert">
             <p class="text-align"> <?= $_SESSION["alert"]["message"]; ?> </p>
         </div>

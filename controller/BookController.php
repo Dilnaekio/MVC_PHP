@@ -2,60 +2,60 @@
 require "model/BookManager.php";
 require "GlobalController.php";
 
-class LivreController
+class BookController
 {
-    private $livreManager;
+    private $bookManager;
 
     public function __construct()
     {
-        $this->livreManager = new BookManager;
-        $this->livreManager->loadBooks();
+        $this->bookManager = new BookManager;
+        $this->bookManager->loadBooks();
     }
 
-    public function afficherLivres()
+    public function displayBooks()
     {
-        $books = $this->livreManager->getBooksList();
+        $books = $this->bookManager->getBooksList();
         require "view/livresView.php";
     }
 
-    public function afficherLivre($id)
+    public function displayBook($id)
     {
-        $book = $this->livreManager->getBookById($id);
+        $book = $this->bookManager->getBookById($id);
         require "view/oneBookView.php";
     }
 
-    public function ajoutLivre()
+    public function addBook()
     {
         require "view/ajoutLivre.php";
     }
 
-    public function supprimerLivre($id)
+    public function deleteBook($id)
     {
-        $img = $this->livreManager->getBookById($id)->getImg();
+        $img = $this->bookManager->getBookById($id)->getImg();
         unlink("public/images/" . $img);
-        $this->livreManager->supprimerLivreBD($id);
+        $this->bookManager->supprimerLivreBD($id);
 
         GlobalController::manageErrors("success", "Votre livre a bien été supprimé");
         header("location: " . URL . "livres");
     }
 
-    public function ajoutLivreValidation()
+    public function addBookValidation()
     {
         $img = $_FILES['addBookImg'];
         $folder = "public/images/";
         $newImg = GlobalController::ajoutImage($_POST["addBookName"], $img, $folder);
-        $this->livreManager->ajoutLivreBD($_POST["addBookName"], $_POST["addBookPages"], $newImg);
+        $this->bookManager->ajoutLivreBD($_POST["addBookName"], $_POST["addBookPages"], $newImg);
         GlobalController::manageErrors("success", "Votre livre a bien été ajouté");
         header("location: " . URL . "livres");
     }
 
-    public function modifierLivre($id)
+    public function modifyBook($id)
     {
-        $book = $this->livreManager->getBookById($id);
+        $book = $this->bookManager->getBookById($id);
         require "view/modifLivreView.php";
     }
 
-    public function modifLivreValidation()
+    public function modifyBookValidation()
     {
         $folder = "public/images/";
         $currentImg = $_POST["currentImg"];
@@ -65,10 +65,10 @@ class LivreController
             unlink($currentImg);
             $imgToAdd = GlobalController::ajoutImage($_POST["modBookName"], $newImg, $folder);
 
-            $this->livreManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
+            $this->bookManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
         } else {
             $imgToAdd = $currentImg;
-            $this->livreManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
+            $this->bookManager->modifierLivreBD($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
         }
 
         GlobalController::manageErrors("success", "Les modifications ont bien été enregistrées");

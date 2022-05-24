@@ -3,8 +3,8 @@ session_start();
 define("URL", str_replace("index.php", "", (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://" . $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"]));
 try {
 
-    require "controller/LivreController.php";
-    $controller = new LivreController;
+    require "controller/BookController.php";
+    $controller = new BookController;
 
     if (empty($_GET['page'])) {
         require "view/accueilView.php";
@@ -17,27 +17,27 @@ try {
 
             case "livres":
                 if (count($url)  === 1) {
-                    $controller->afficherLivres();
+                    $controller->displayBooks();
                     break;
                 } else {
                     switch ($url[1]) {
                         case "lire":
-                            $controller->afficherLivre($url[2]);
+                            $controller->displayBook($url[2]);
                             break;
                         case "ajouter":
-                            $controller->ajoutLivre();
+                            $controller->addBook();
                             break;
                         case "modifier":
-                            $controller->modifierLivre($url[2]);
+                            $controller->modifyBook($url[2]);
                             break;
                         case "modifValider":
-                            $controller->modifLivreValidation();
+                            $controller->modifyBookValidation();
                             break;
                         case "supprimer":
-                            $controller->supprimerLivre($url[2]);
+                            $controller->deleteBook($url[2]);
                             break;
                         case "valider":
-                            $controller->ajoutLivreValidation();
+                            $controller->addBookValidation();
                             break;
                         default:
                             throw new Exception("Aucune sous page trouvée");

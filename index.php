@@ -9,7 +9,7 @@ try {
 
     // Vérification de base de l'action de l'utilisateur. S'il n'a demandé aucune "page", chargement de l'accueil
     if (empty($_GET['page'])) {
-        require "view/accueilView.php";
+        require "view/homepageView.php";
     } else {
         // Si une page a été demandé, nous explosons l'URL pour en faire un tableau et trouver les actions choisies
         $url = explode("/", filter_var($_GET["page"]), FILTER_SANITIZE_URL);
@@ -17,7 +17,7 @@ try {
         // Nous contrôlons si l'utilisateur veut l'accueil ou livres pour charger les vues désirées
         switch ($url[0]) {
             case "accueil":
-                require "view/accueilView.php";
+                require "view/homepageView.php";
                 break;
 
                 // Si l'utilisateur veut juste afficher tous les livres, nous appelons le controller dédié

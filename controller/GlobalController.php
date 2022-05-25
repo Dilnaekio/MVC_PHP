@@ -2,7 +2,7 @@
 
 abstract class GlobalController
 {
-    public static function ajoutImage($title, $file, $folder)
+    public static function addImg($title, $file, $folder)
     {
         if ($file['size'] > 0) {
             $upload = 1;

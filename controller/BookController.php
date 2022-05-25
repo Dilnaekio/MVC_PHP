@@ -39,7 +39,7 @@ class BookController
     {
         $img = $_FILES['addBookImg'];
         $folder = "public/images/";
-        $newImg = GlobalController::ajoutImage($_POST["addBookName"], $img, $folder);
+        $newImg = GlobalController::addImg($_POST["addBookName"], $img, $folder);
         $this->bookManager->addBookDB($_POST["addBookName"], $_POST["addBookPages"], $newImg);
         GlobalController::manageErrors("success", "Votre livre a bien été ajouté");
         header("location: " . URL . "livres");
@@ -72,7 +72,7 @@ class BookController
 
         if ($newImg["size"] > 0) {
             unlink($currentImg);
-            $imgToAdd = GlobalController::ajoutImage($_POST["modBookName"], $newImg, $folder);
+            $imgToAdd = GlobalController::addImg($_POST["modBookName"], $newImg, $folder);
 
             $this->bookManager->modifyBookDB($_POST["idBook"], $_POST["modBookName"], $_POST["modBookPages"], $imgToAdd);
         } else {

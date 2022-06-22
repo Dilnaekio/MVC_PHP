@@ -41,10 +41,9 @@ class BookManager extends Model
         foreach ($this->booksList as $book) {
             if ($book->getId() == $id) {
                 return $book;
-            } else {
-                throw new Exception ("Le livre demandé n'existe pas !");
             }
         }
+        throw new Exception("Le livre demandé n'existe pas");
     }
 
     // Méthode pour ajouter un livre en base de données

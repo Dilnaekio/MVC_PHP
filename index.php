@@ -5,7 +5,9 @@ define("URL", str_replace("index.php", "", (isset($_SERVER["HTTPS"]) ? "https" :
 try {
     // Instanciation de notre classe controller pour gérer les actions de l'utilisateur
     require "controller/BookController.php";
-    $controller = new BookController;
+    require "controller/UserController.php";
+    $bookController = new BookController;
+    $userController = new UserController;
 
     // Vérification de base de l'action de l'utilisateur. S'il n'a demandé aucune "page", chargement de l'accueil
     if (empty($_GET['page'])) {
@@ -20,31 +22,34 @@ try {
                 require "view/homepageView.php";
                 break;
 
-                // Si l'utilisateur veut juste afficher tous les livres, nous appelons le controller dédié
+            case "connexion":
+                $userController->displayFormConnection();
+                break;
+                // Si l'utilisateur veut juste afficher tous les livres, nous appelons le bookController dédié
             case "livres":
                 if (count($url)  === 1) {
-                    $controller->displayBooks();
+                    $bookController->displayBooks();
                     break;
                 } else {
-                    // Si l'URL est plus longue, cela signifie que l'utilisateur veut faire une action dans la partie "livres", nous appelons le controller dédié en fonction de son choix
+                    // Si l'URL est plus longue, cela signifie que l'utilisateur veut faire une action dans la partie "livres", nous appelons le bookController dédié en fonction de son choix
                     switch ($url[1]) {
                         case "lire":
-                            $controller->displayBook($url[2]);
+                            $bookController->displayBook($url[2]);
                             break;
                         case "ajouter":
-                            $controller->addBook();
+                            $bookController->addBook();
                             break;
                         case "modifier":
-                            $controller->modifyBook($url[2]);
+                            $bookController->modifyBook($url[2]);
                             break;
                         case "modifValider":
-                            $controller->modifyBookValidation();
+                            $bookController->modifyBookValidation();
                             break;
                         case "supprimer":
-                            $controller->deleteBook($url[2]);
+                            $bookController->deleteBook($url[2]);
                             break;
                         case "valider":
-                            $controller->addBookValidation();
+                            $bookController->addBookValidation();
                             break;
                             // Si l'utilisateur veut une action non programmée, nous lui renvoyons une nouvelle Exception
                         default:

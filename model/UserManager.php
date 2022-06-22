@@ -16,8 +16,9 @@ class UserManager extends Model
 
         $data = $req->fetch(PDO::FETCH_OBJ);
 
-        $newUser = new Users($data->id, $data->name, $data->mail, $data->pwd);
+        // TODO : gérer ici erreur si $data est vide
+        // $newUser = new Users($data->id, $data->name, $data->mail, $data->pwd);
 
-        return $newUser;
+        // return $newUser;
     }
 }

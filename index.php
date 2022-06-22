@@ -23,8 +23,18 @@ try {
                 break;
 
             case "connexion":
-                $userController->displayFormConnection();
+                if (count($url) === 1) {
+                    $userController->displayFormConnection();
+                } else {
+                    switch ($url[1]) {
+                        case "validation":
+                            // TODO appeler ici le userCOntroller qui va vérifier que la co est bonne
+                            $userController->checkUserInfos();
+                            break;
+                    }
+                }
                 break;
+                
                 // Si l'utilisateur veut juste afficher tous les livres, nous appelons le bookController dédié
             case "livres":
                 if (count($url)  === 1) {

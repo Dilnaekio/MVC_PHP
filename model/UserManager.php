@@ -14,11 +14,14 @@ class UserManager extends Model
             ":mail" => $mail
         ]);
 
-        $data = $req->fetch(PDO::FETCH_OBJ);
+        $result = $req->fetch(PDO::FETCH_OBJ);
 
-        // TODO : gérer ici erreur si $data est vide
-        // $newUser = new Users($data->id, $data->name, $data->mail, $data->pwd);
+        if (!empty($result)) {
+            $user = new Users($result->id, $result->name, $result->mail, $result->pwd, $result->role);
 
-        // return $newUser;
+            return $user;
+        } else {
+            return null;
+        }
     }
 }

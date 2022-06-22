@@ -5,13 +5,15 @@ class Users{
     private $name;
     private $mail;
     private $pwd;
+    private $role;
 
-    public function __construct($id, $name, $mail, $pwd)
+    public function __construct($id, $name, $mail, $pwd, $role)
     {
         $this->id = $id;
         $this->name = $name;
         $this->mail = $mail;
         $this->pwd = $pwd;
+        $this->role = $role;
     }
 
 
@@ -20,7 +22,7 @@ class Users{
      */ 
     public function getId()
     {
-        return $this->id;
+        return htmlspecialchars($this->id);
     }
 
     /**
@@ -40,7 +42,7 @@ class Users{
      */ 
     public function getName()
     {
-        return $this->name;
+        return htmlspecialchars($this->name);
     }
 
     /**
@@ -60,7 +62,7 @@ class Users{
      */ 
     public function getMail()
     {
-        return $this->mail;
+        return htmlspecialchars($this->mail);
     }
 
     /**
@@ -80,7 +82,7 @@ class Users{
      */ 
     public function getPwd()
     {
-        return $this->pwd;
+        return htmlspecialchars($this->pwd);
     }
 
     /**
@@ -91,6 +93,26 @@ class Users{
     public function setPwd($pwd)
     {
         $this->pwd = $pwd;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role)
+    {
+        $this->role = $role;
 
         return $this;
     }

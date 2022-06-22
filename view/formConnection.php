@@ -12,7 +12,7 @@ ob_start();
 
         <div class="form-group">
             <label for="pwdConnection">Mot de passe</label>
-            <input type="password" class="form-control" name="mailConnection" id="pwdConnection" placeholder="Et maintenant, le mot de passe...">
+            <input type="password" class="form-control" name="pwdConnection" id="pwdConnection" placeholder="Et maintenant, le mot de passe...">
         </div>
 
         <div class="form-group form-check">
@@ -20,7 +20,7 @@ ob_start();
             <label class="form-check-label" for="rememberCheck">Rester connecté</label>
         </div>
 
-        <button type="submitConnection" name="submitConnection" class="btn btn-primary">Se connecter</button>
+        <button type="submit" name="submitConnection" class="btn btn-primary">Se connecter</button>
     </form>
 </section>
 

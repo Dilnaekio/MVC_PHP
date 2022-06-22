@@ -20,6 +20,9 @@ try {
         switch ($url[0]) {
             case "accueil":
                 require "view/homepageView.php";
+                // TODO : les COOKIES ne sont pas set up correctement apparemment
+                var_dump($_COOKIE["UserName"]);
+                var_dump($_SESSION);
                 break;
 
             case "connexion":
@@ -34,9 +37,9 @@ try {
                 }
                 break;
 
-                case "deconnexion":
-                    $userController->disconnection();
-                    break;
+            case "deconnexion":
+                $userController->disconnection();
+                break;
 
                 // Si l'utilisateur veut juste afficher tous les livres, nous appelons le bookController dédié
             case "livres":

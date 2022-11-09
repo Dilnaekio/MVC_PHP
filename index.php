@@ -21,8 +21,6 @@ try {
             case "accueil":
                 require "view/homepageView.php";
                 // TODO : les COOKIES ne sont pas set up correctement apparemment
-                var_dump($_COOKIE["UserName"]);
-                var_dump($_SESSION);
                 break;
 
             case "connexion":

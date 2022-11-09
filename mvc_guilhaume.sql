@@ -39,9 +39,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id_book`, `title_book`, `nb_pages_book`, `img_book`) VALUES
-(4, 'Cacahuete', 500, '69487_Cacahuete.jpeg'),
-(6, 'Baboune', 250, '64412_Baboune.jpg'),
-(12, 'Saïko', 678, '81915_Saïko.png');
+(4, 'Cacahuete', 500, 'Cacahuete.jpeg'),
+(6, 'Baboune', 250, 'Baboune.jpg'),
+(12, 'Saïko', 678, 'Saïko.png');
 
 --
 -- Index pour les tables déchargées
